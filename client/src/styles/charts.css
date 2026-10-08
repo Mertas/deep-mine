@@ -1,0 +1,18 @@
+#chart-winrate,
+#chart-loss {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.chart-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}

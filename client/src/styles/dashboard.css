@@ -1,0 +1,46 @@
+.stat-value {
+  transition: color 0.3s;
+}
+
+.win-rate[data-rate].rate-good {
+  color: var(--accent-green);
+}
+
+.win-rate[data-rate].rate-ok {
+  color: var(--accent-yellow);
+}
+
+.win-rate[data-rate].rate-bad {
+  color: var(--accent-red);
+}
+
+#episode-counter {
+  font-variant-numeric: tabular-nums;
+  transition: none;
+}
+
+#episode-counter.flash {
+  animation: flashUpdate 0.3s ease-out;
+}
+
+#win-rate {
+  font-variant-numeric: tabular-nums;
+}
+
+#win-rate.flash {
+  animation: flashUpdate 0.3s ease-out;
+}
+
+#epsilon-value {
+  font-variant-numeric: tabular-nums;
+}
+
+.info-row span:last-child {
+  font-variant-numeric: tabular-nums;
+}
+
+#btn-pause.paused {
+  color: var(--accent-yellow);
+  border-color: var(--accent-yellow);
+  background: rgba(255, 215, 77, 0.08);
+}

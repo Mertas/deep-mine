@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Mine — AI learns Minesweeper</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💣</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/board.css">
+  <link rel="stylesheet" href="/styles/dashboard.css">
+  <link rel="stylesheet" href="/styles/charts.css">
+  <link rel="stylesheet" href="/styles/animations.css">
+</head>
+<body>
+  <div id="app">
+    <header id="top-bar">
+      <div class="brand">DEEP MINE</div>
+      <div class="stat">
+        <span class="stat-label">EPISODE</span>
+        <span class="stat-value" id="episode-counter">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">WIN RATE</span>
+        <span class="stat-value win-rate" id="win-rate">0%</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">EPSILON</span>
+        <span class="stat-value epsilon" id="epsilon-value">1.000</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">FIELD</span>
+        <span class="stat-value" id="field-size">5x5·3</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">STATUS</span>
+        <span class="stat-value" id="connection-status">CONNECTING</span>
+      </div>
+    </header>
+
+    <main id="main-layout">
+      <aside id="left-panel" class="panel">
+        <div class="panel-header">INFO</div>
+        <div class="info-row">
+          <span>Revealed</span>
+          <span id="info-revealed">0/25</span>
+        </div>
+        <div class="info-row">
+          <span>Flags</span>
+          <span id="info-flags">0/3</span>
+        </div>
+        <div class="info-row">
+          <span>Steps</span>
+          <span id="info-steps">0</span>
+        </div>
+        <div class="info-row">
+          <span>Train step</span>
+          <span id="info-train-step">0</span>
+        </div>
+        <div class="info-row">
+          <span>Loss</span>
+          <span id="info-loss">—</span>
+        </div>
+        <div class="info-row">
+          <span>Clients</span>
+          <span id="info-clients">0</span>
+        </div>
+
+        <div class="panel-header" style="margin-top:16px">CONTROLS</div>
+        <div id="speed-controls">
+          <button class="speed-btn" data-speed="0.5">0.5x</button>
+          <button class="speed-btn active" data-speed="1">1x</button>
+          <button class="speed-btn" data-speed="2">2x</button>
+          <button class="speed-btn" data-speed="5">5x</button>
+          <button class="speed-btn" data-speed="100">MAX</button>
+        </div>
+        <div id="action-controls">
+          <button id="btn-pause" class="action-btn">PAUSE</button>
+          <button id="btn-reset" class="action-btn danger">RESET</button>
+        </div>
+      </aside>
+
+      <section id="board-container">
+        <div id="start-screen">
+          <div class="start-logo">DEEP MINE</div>
+          <div class="start-subtitle">AI learns to play Minesweeper via Deep Q-Network</div>
+          <button id="btn-start-training" class="start-btn">START TRAINING</button>
+          <div class="start-hint">The AI will play automatically. Just watch.</div>
+        </div>
+        <div id="board"></div>
+        <div id="board-overlay" class="hidden"></div>
+      </section>
+
+      <aside id="right-panel" class="panel">
+        <div class="panel-header">WIN RATE</div>
+        <div class="chart-container">
+          <canvas id="chart-winrate"></canvas>
+        </div>
+        <div class="panel-header">LOSS</div>
+        <div class="chart-container">
+          <canvas id="chart-loss"></canvas>
+        </div>
+      </aside>
+    </main>
+
+    <footer id="bottom-bar">
+      <span class="status-text" id="status-message">Awaiting connection...</span>
+    </footer>
+  </div>
+
+  <div id="reset-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-title">Reset Training?</div>
+      <div class="modal-text">This will delete all progress and restart from scratch.</div>
+      <div class="modal-actions">
+        <button id="btn-reset-confirm" class="action-btn danger">RESET</button>
+        <button id="btn-reset-cancel" class="action-btn">CANCEL</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/main.js"></script>
+</body>
+</html>
